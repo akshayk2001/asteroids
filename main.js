@@ -21,6 +21,19 @@ function draw(){
   context.fillRect(0, 0, width, height);
 
   // Drawing triangle with paths
+drawTriangle(context, x, y, rectWidth, rectHeight);
+
+  //Update x and y for the next draw operation
+  y = y + movementRate;
+
+  window.requestAnimationFrame(draw);
+}
+window.requestAnimationFrame(draw);
+
+
+
+function drawTriangle(context, x, y, rectWidth, rectHeight){
+  // Drawing triangle with paths
   context.strokeStyle = 'blue';
   context.beginPath();
   context.moveTo(x, y);
@@ -29,9 +42,4 @@ function draw(){
   context.closePath();
   context.stroke();
 
-  //Update x and y for the next draw operation
-  y = y + movementRate;
-
-  window.requestAnimationFrame(draw);
 }
-window.requestAnimationFrame(draw);
