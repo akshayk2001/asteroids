@@ -21,8 +21,8 @@ function draw(){
   context.fillRect(0, 0, width, height);
 
   // Drawing triangle with paths
-drawTriangle(context, x, y, rectWidth, rectHeight);
-
+  drawTriangle(context, x, y, rectWidth, rectHeight);
+  drawTriangle(context, x * 2, y * 2, rectWidth, rectHeight);
   //Update x and y for the next draw operation
   y = y + movementRate;
 
