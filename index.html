@@ -375,30 +375,44 @@
       context.fillStyle = "rgb(0, 0, 0)";
       context.fillRect(0, 0, width, height);
 
-      //Draw our rectangle at the target x,y position
-      context.fillStyle = "rgb(0, 255, 255)";
-      context.fillRect(
-        x,
-        y,
-        rectWidth,
-        rectHeight);
+      // //Draw our rectangle at the target x,y position
+      // context.fillStyle = "rgb(0, 255, 255)";
+      // context.fillRect(
+      //   x,
+      //   y,
+      //   rectWidth,
+      //   rectHeight);
+      //
+      //
+      //
+      // context.strokeStyle = "red";
+      // context.strokeRect(
+      //   x,
+      //   y,
+      //   rectWidth,
+      //   rectHeight);
+      //
+      // context.strokeStyle = "blue";
 
+      // context.beginPath();
+      // context.moveTo(75,50);
+      // context.lineTo(100,75);
+      // context.lineTo(100,25);
+      // context.lineTo(75,50)
+      // context.stroke();
 
-
-      context.strokeStyle = "red";
-      context.strokeRect(
-        x,
-        y,
-        rectWidth,
-        rectHeight);
-
-      context.strokeStyle = "blue";
-      context.beginPath(x, y, rectWidth, rectHeight);
-      context.moveTo(75,50);
-      context.lineTo(100,75);
-      context.lineTo(100,25);
-      context.lineTo(75,50)
+      context.strokeStyle = 'blue';
+      context.beginPath();
+      context.moveTo(0, 0);
+      context.lineTo(100, 0);
+      context.lineTo(100, 100);
+      context.lineTo(0, 100);
+      context.closePath();
       context.stroke();
+
+
+
+
 
 
 
@@ -414,6 +428,25 @@
 
     }
     window.requestAnimationFrame(draw);
+
+
+// From http://paperjs.org/tutorials/project-items/transforming-items
+//     var path = new Path.Triangle(new Point(50, 50), new Size(100, 75));
+//       path.style = {
+//          fillColor: 'white',
+//           strokeColor: 'blue'
+//         };
+//
+// // Create a copy of the path and set its stroke color to red:
+//   var copy = path.clone();
+//   copy.strokeColor = 'red';
+//
+//   function onFrame(event) {
+// // Each frame, rotate the copy by 1 degree:
+//    copy.rotate(1);
+//  }
+
+
 
  </script>
 </body>
