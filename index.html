@@ -403,12 +403,19 @@
 
       context.strokeStyle = 'blue';
       context.beginPath();
-      context.moveTo(0, 0);
-      context.lineTo(100, 0);
-      context.lineTo(100, 100);
-      context.lineTo(0, 100);
+      context.moveTo(x, y);
+      context.lineTo(x + rectWidth, y);
+      context.lineTo(x + rectWidth, y + rectHeight);
+      // context.lineTo(x + rectWidth/2, y + rectHeight + rectHeight/2);
+      context.lineTo(x, y + rectHeight);
       context.closePath();
       context.stroke();
+
+
+
+
+
+
 
 
 
