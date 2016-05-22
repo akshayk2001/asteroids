@@ -8,8 +8,8 @@ var rectHeight = height/5;
 var context = canvas.getContext('2d');
 
 
-var x = 0 - rectHeight;
-var y = 250 - rectHeight;
+var x = 0 - rectWidth;
+var y = 250 - rectHeight/2 ;
 
 var movementRate = 1;
 
@@ -53,12 +53,6 @@ function drawTriangle(context, x, y, rectWidth, rectHeight){
 
 
 
-    // context.strokeStyle = 'blue';
-    // context.beginPath();
-    // context.moveTo(x, y);
-    // context.lineTo(x + rectWidth, y);
-    // context.lineTo(x + rectWidth/2, y + rectHeight);
-    // context.closePath();
-    // context.stroke();
+
 
 }
