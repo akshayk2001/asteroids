@@ -8,8 +8,8 @@ var rectHeight = height/5;
 var context = canvas.getContext('2d');
 
 
-var x = 0;
-var y = 0 - rectHeight;
+var x = 0 - rectHeight;
+var y = 250 - rectHeight;
 
 var movementRate = 1;
 
@@ -22,10 +22,9 @@ function draw(){
 
   // Drawing triangle with paths
   drawTriangle(context, x, y, rectWidth, rectHeight);
-  drawTriangle(context, x * 2, y * 2, rectWidth, rectHeight);
   //Update x and y for the next draw operation
-  y = y + movementRate;
 
+  x = x + movementRate;
   window.requestAnimationFrame(draw);
 }
 window.requestAnimationFrame(draw);
@@ -34,12 +33,32 @@ window.requestAnimationFrame(draw);
 
 function drawTriangle(context, x, y, rectWidth, rectHeight){
   // Drawing triangle with paths
-  context.strokeStyle = 'blue';
-  context.beginPath();
-  context.moveTo(x, y);
-  context.lineTo(x + rectWidth, y);
-  context.lineTo(x + rectWidth/2, y + rectHeight);
-  context.closePath();
-  context.stroke();
+  // context.strokeStyle = 'blue';
+  // context.beginPath();
+  // context.moveTo(x, y);
+  // context.lineTo(x + rectWidth, y);
+  // context.lineTo(x + rectWidth/2, y + rectHeight);
+  // context.closePath();
+  // context.stroke();
+
+
+    context.strokeStyle = 'blue';
+    context.beginPath();
+    context.moveTo(x, y);
+    context.lineTo(x + rectWidth, y + rectHeight/2);
+    context.lineTo(x, y + rectHeight);
+    context.closePath();
+    context.stroke();
+
+
+
+
+    // context.strokeStyle = 'blue';
+    // context.beginPath();
+    // context.moveTo(x, y);
+    // context.lineTo(x + rectWidth, y);
+    // context.lineTo(x + rectWidth/2, y + rectHeight);
+    // context.closePath();
+    // context.stroke();
 
 }
