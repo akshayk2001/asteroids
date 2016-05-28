@@ -92,10 +92,10 @@ function drawTriangle(context, x, y, rectWidth, rectHeight, rotationDegrees){
 
 	context.translate(centerX, centerY); // Translate to center of rectangle
 	console.log('context.translate(centerX, centerY)', centerX, centerY);
-
+	//
 	context.strokeStyle = "white";
 	context.strokeRect(0, 0, width, height);
-
+	//
 	// Convert degrees to radians, because context.rotate needs radians
 	var radians = rotationDegrees * (Math.PI/180);
 	context.rotate(radians);
@@ -105,12 +105,6 @@ function drawTriangle(context, x, y, rectWidth, rectHeight, rotationDegrees){
 	context.strokeStyle = "yellow";
 	context.strokeRect(0, 0, width, height);
 
-	context.translate(-centerX, -centerY);
-	console.log('context.translate(-centerX, -centerY);', -centerX, -centerY);
-
-	context.strokeStyle = "green";
-	context.strokeRect(0, 0, width, height);
-
 
 
 	// Draw a triangle with paths
@@ -118,10 +112,13 @@ function drawTriangle(context, x, y, rectWidth, rectHeight, rotationDegrees){
 	// Start a new path
 	context.beginPath();
 
+
+	var triangleOriginX = rectWidth/2;
+	var triangleOriginY = rectHeight/2;
 	// Now define the path with .moveTo() and .lineTo() methods
-	context.moveTo(x, y);
-	context.lineTo(x + rectWidth, y);
-	context.lineTo(x + rectWidth/2, y + rectHeight);
+	context.moveTo(-triangleOriginX , -triangleOriginY);
+	context.lineTo(-triangleOriginX  + rectWidth, -triangleOriginY);
+	context.lineTo(-triangleOriginX + rectWidth/2, -triangleOriginY + rectHeight);
 
 	context.closePath();
 
