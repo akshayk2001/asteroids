@@ -4,7 +4,7 @@ var canvas = document.getElementById('asteroids');
 canvas.width = width;
 canvas.height = height;
 var rectWidth = width/5;
-var rectHeight = height/5;
+var rectHeight = height/10;
 var context = canvas.getContext('2d');
 
 
@@ -59,7 +59,7 @@ var y = 0;
 var rotationDegrees = 0;
 
 var movementRate = 5;
-var rotationRate = .5;
+var rotationRate = 5;
 
 function draw(){
 	// call clearRect with the entire size of the canvas to clear the whole thing
@@ -73,7 +73,7 @@ function draw(){
 	// y = y + movementRate;
 	// x = x + movementRate;
 	// x = x + movementRate;
-	rotationDegrees = rotationDegrees + rotationRate;
+	// rotationDegrees = rotationDegrees + rotationRate;
 
 	if (rotationDegrees > 360){
 		rotationDegrees = 0;
@@ -86,22 +86,25 @@ window.requestAnimationFrame(draw);
 window.addEventListener('keydown', function(event) {
 	console.log('this is where I describe the log: keydown event.which', event.which);
 
+
 	switch(event.which){
 		case 37:
 		console.log('left');
-		x = x - movementRate;
+		rotationDegrees = rotationDegrees - rotationRate;
 		break;
 		case 38:
 		console.log('up');
-		y = y - movementRate;
+		x = x + movementRate * Math.cos(rotationDegrees * Math.PI / 180);
+		y = y + movementRate * Math.sin(rotationDegrees * Math.PI / 180);
 		break;
 		case 39:
 		console.log('right');
-		x = x + movementRate;
+		rotationDegrees = rotationDegrees + rotationRate;
 		break;
 		case 40:
 		console.log('down');
-		y = y + movementRate;
+		x = x - movementRate * Math.cos(rotationDegrees * Math.PI / 180);
+		y = y - movementRate * Math.sin(rotationDegrees * Math.PI / 180);
 		break;
 		default:
 	}
@@ -142,8 +145,8 @@ function drawTriangle(context, x, y, rectWidth, rectHeight, rotationDegrees){
 	var triangleOriginY = rectHeight/2;
 	// Now define the path with .moveTo() and .lineTo() methods
 	context.moveTo(-triangleOriginX , -triangleOriginY);
-	context.lineTo(-triangleOriginX  + rectWidth, -triangleOriginY);
-	context.lineTo(-triangleOriginX + rectWidth/2, -triangleOriginY + rectHeight);
+	context.lineTo(-triangleOriginX  + rectWidth, -triangleOriginY + rectHeight/2);
+	context.lineTo(-triangleOriginX, -triangleOriginY + rectHeight);
 
 	context.closePath();
 
