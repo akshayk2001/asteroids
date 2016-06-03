@@ -108,8 +108,8 @@ window.addEventListener('keydown', function(event) {
 		break;
 		case 40:
 		console.log('down');
-		x = x - movementRate * Math.cos(rotationDegrees * Math.PI / 180);
-		y = y - movementRate * Math.sin(rotationDegrees * Math.PI / 180);
+		dx = movementRate = 0;
+		dy = movementRate = 0;
 		break;
 		default:
 	}
