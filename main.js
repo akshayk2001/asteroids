@@ -3,8 +3,8 @@ var height = 500;
 var canvas = document.getElementById('asteroids');
 canvas.width = width;
 canvas.height = height;
-var rectWidth = width/5;
-var rectHeight = height/10;
+var rectWidth = width/20;
+var rectHeight = height/40;
 var context = canvas.getContext('2d');
 
 
@@ -62,6 +62,12 @@ var yVector = 0;
 
 var movementRate = 2;
 var rotationRate = 10;
+
+var myRocket = new Rocket();
+
+console.log('myRocket', myRocket);
+myRocket.something = 5;
+console.log('myRocket after changing .something', myRocket);
 
 function draw(){
 	// call clearRect with the entire size of the canvas to clear the whole thing
