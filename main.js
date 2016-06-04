@@ -57,8 +57,8 @@ var context = canvas.getContext('2d');
 var x = 0;
 var y = 0;
 var rotationDegrees = 0;
-var x2 = 0;
-var y2 = 0;
+var xVector = 0;
+var yVector = 0;
 
 var movementRate = 2;
 var rotationRate = 10;
@@ -69,8 +69,8 @@ function draw(){
 	context.fillStyle = "rgb(0, 0, 0)";
 	context.fillRect(0, 0, width, height);
 
-	x += x2;
-	y += y2;
+	x = x + xVector;
+	y = y + yVector;
 
 	drawTriangle(context, x, y, rectWidth, rectHeight, rotationDegrees);
 
@@ -99,8 +99,8 @@ window.addEventListener('keydown', function(event) {
 		break;
 		case 38:
 		console.log('up');
-		x2 = movementRate * Math.cos(rotationDegrees * Math.PI / 180);
-		y2 = movementRate * Math.sin(rotationDegrees * Math.PI / 180);
+		xVector = movementRate * Math.cos(rotationDegrees * Math.PI / 180);
+		yVector = movementRate * Math.sin(rotationDegrees * Math.PI / 180);
 		break;
 		case 39:
 		console.log('right');
@@ -108,8 +108,8 @@ window.addEventListener('keydown', function(event) {
 		break;
 		case 40:
 		console.log('down');
-		x2 = movementRate = 0;
-		y2 = movementRate = 0;
+		xVector = 0;
+		yVector = 0;
 		break;
 		default:
 	}
