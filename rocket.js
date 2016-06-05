@@ -59,6 +59,18 @@ class Rocket {
         this.xVector = 0;
         this.yVector = 0;
         break;
+        case 87:
+        this.color = 'blue';
+        break;
+        case 65:
+        this.color = 'green';
+        break;
+        case 83:
+        this.color = 'purple';
+        break;
+        case 68:
+        this.color = 'yellow';
+        break;
         default:
       }
     }
