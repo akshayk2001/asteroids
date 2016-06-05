@@ -84,7 +84,7 @@ class Rocket {
         rotationDegrees = 0;
       }
     }
-    draw(){
+    drawfirsttriangle(){
       this.update();
 
       var context = this.context;
@@ -127,11 +127,69 @@ class Rocket {
 
       context.restore();
 
+
       x = x + xVector;
       y = y + yVector;
 
       if (rotationDegrees > 360){
         rotationDegrees = 0;
+      }
+    }
+
+
+    drawsecondtriangle(){
+
+      this.update();
+
+      var context = this.context;
+      var x = this.x;
+      var y = this.y;
+      var width = this.width;
+      var height = this.height;
+      var rotationDegrees = this.rotationDegrees;
+
+      context.save();
+
+      var centerX = x + width * 5 - width/2;
+      var centerY = y + height/2;
+
+      context.translate(centerX, centerY); // Translate to center of rectangle
+
+      // Convert degrees to radians, because context.rotate needs radians
+      var radians = rotationDegrees * (Math.PI/180);
+      context.rotate(radians);
+
+
+
+      // Draw a triangle with paths
+      context.strokeStyle = 'blue';
+      // Start a new path
+      context.beginPath();
+
+
+      var triangleOriginX = x + width * 5 - width/2;
+      var triangleOriginY = y + height/2;
+      // Now define the path with .moveTo() and .lineTo() methods
+      context.moveTo(triangleOriginX + width/2, -triangleOriginY);
+      context.lineTo(triangleOriginX - width/2, triangleOriginY);
+      context.lineTo(triangleOriginX + width/2, triangleOriginY + height/2);
+
+      context.closePath();
+
+      // The path is only made visible when we call .stroke()
+      context.stroke();
+
+      context.restore();
+
+
+      x = x + xVector;
+      y = y + yVector;
+
+      if (rotationDegrees > 360){
+        rotationDegrees = 0;
+
+
+
       }
     }
   }

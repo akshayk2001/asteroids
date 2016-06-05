@@ -40,7 +40,8 @@ function draw(){
 	context.fillRect(0, 0, width, height);
 
 
-	myRocket.draw();
+	myRocket.drawfirsttriangle();
+	myRocket.drawsecondtriangle();
 
 
 
