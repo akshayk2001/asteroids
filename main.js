@@ -36,7 +36,7 @@ var secondRocket = new Rocket(
 	50,
 	50,
 	180,
-	rotationRate,
+	20,
 	xVector,
 	yVector,
 	10,
