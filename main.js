@@ -39,7 +39,7 @@ var secondRocket = new Rocket(
 	rotationRate,
 	xVector,
 	yVector,
-	movementRate,
+	10,
 	450,
 	0,
 	'blue');
