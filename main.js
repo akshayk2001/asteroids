@@ -9,7 +9,7 @@ var context = canvas.getContext('2d');
 
 
 
-var x = 0;
+var x = 450;
 var y = 0;
 var rotationDegrees = 0;
 var xVector = 0;
@@ -27,9 +27,22 @@ var myRocket = new Rocket(
 	xVector,
 	yVector,
 	movementRate,
-	x,
-	y,
+	0,
+	0,
 	'red');
+
+var secondRocket = new Rocket(
+	context,
+	rectWidth,
+	rectHeight,
+	rotationDegrees,
+	rotationRate,
+	xVector,
+	yVector,
+	movementRate,
+	450,
+	0,
+	'blue');
 
 console.log('myRocket', myRocket);
 
@@ -41,6 +54,7 @@ function draw(){
 
 
 	myRocket.draw();
+	secondRocket.draw();
 
 
 
