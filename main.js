@@ -1,8 +1,8 @@
 var width = 500;
 var height = 500;
 var canvas = document.getElementById('asteroids');
-canvas.width = width;
-canvas.height = height;
+var canvasWidth = canvas.width = width;
+var canvasHeight = canvas.height = height;
 var rectWidth = width/20;
 var rectHeight = height/40;
 var context = canvas.getContext('2d');
@@ -20,6 +20,8 @@ var rotationRate = 10;
 
 var myRocket = new Rocket(
 	context,
+	canvasWidth,
+	canvasHeight,
 	rectWidth,
 	rectHeight,
 	rotationDegrees,
@@ -31,18 +33,18 @@ var myRocket = new Rocket(
 	0,
 	'red');
 
-var secondRocket = new Rocket(
-	context,
-	50,
-	50,
-	180,
-	20,
-	1,
-	1,
-	10,
-	450,
-	0,
-	'blue');
+// var secondRocket = new Rocket(
+// 	context,
+// 	50,
+// 	50,
+// 	180,
+// 	20,
+// 	1,
+// 	1,
+// 	10,
+// 	450,
+// 	0,
+// 	'blue');
 
 console.log('myRocket', myRocket);
 
@@ -54,7 +56,7 @@ function draw(){
 
 
 	myRocket.draw();
-	secondRocket.draw();
+	// secondRocket.draw();
 
 
 

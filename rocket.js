@@ -1,6 +1,8 @@
 class Rocket {
   constructor(
     context,
+    canvasWidth,
+    canvasHeight,
     width,
     height,
     rotationDegrees,
@@ -14,6 +16,8 @@ class Rocket {
       // "this" refers to the instance of Rocket that I am currently working with
       // Add properties to "this" when each instance of the class should have that property
       this.context = context;
+      this.canvasWidth = canvasWidth;
+      this.canvasHeight = canvasHeight;
       this.width = width;
       this.height = height;
       this.rotationDegrees = rotationDegrees;
@@ -50,6 +54,10 @@ class Rocket {
         this.xVector = movementRate * Math.cos(rotationDegrees * Math.PI / 180);
         this.yVector = movementRate * Math.sin(rotationDegrees * Math.PI / 180);
         break;
+        case 38:
+        console.log('up again');
+        this.xVector = 2 * Math.cos(rotationDegrees * Math.PI / 180);
+        this.yVector = 2 * Math.sin(rotationDegrees * Math.PI / 180);
         case 39:
         console.log('right');
         this.rotationDegrees = rotationDegrees + rotationRate;
@@ -59,7 +67,7 @@ class Rocket {
         this.xVector = 0;
         this.yVector = 0;
         case 87:
-        this.color = 'blue';
+        this.color = 'blue';3
         break;
         case 65:
         this.color = 'green';
@@ -70,19 +78,41 @@ class Rocket {
         case 68:
         this.color = 'yellow';
         break;
-
+ 
         break;
         default:
       }
     }
 
     update(){
+      // var x = this.x
+      // x = 2;
+      // this.x did not get changed to 2. Only the variable x got updated
+      // To change this.x, I have to say this.x = 2;
+      // Variable x only lets my refer to the value of this.x from the time
+      // I did the variable assignment.
+
       this.x = this.x + this.xVector;
       this.y = this.y + this.yVector;
-      x = x + xVector;
-      y = y + yVector;
-      if (rotationDegrees > 360){
-        rotationDegrees = 0;
+      console.log('update(), this.rotationDegrees', this.rotationDegrees);
+      if (this.rotationDegrees > 360){
+        this.rotationDegrees = 0;
+      }
+      if (this.x > this.canvasWidth - this.width){
+        this.xVector = 0;
+        this.yVector = 0;
+      }
+      if (this.y > this.canvasHeight - this.height){
+        this.xVector = 0;
+        this.yVector = 0;
+      }
+      if (this.y < 0){
+        this.xVector = 0;
+        this.yVector = 0;
+      }
+      if (this.x < 0){
+        this.xVector = 0;
+        this.yVector = 0;
       }
     }
     draw(){
@@ -126,13 +156,6 @@ class Rocket {
       // The path is only made visible when we call .stroke()
       context.stroke();
 
-      context.restore();
-
-      x = x + xVector;
-      y = y + yVector;
-
-      if (rotationDegrees > 360){
-        rotationDegrees = 0;
-      }
+      context.restore();3
     }
   }
