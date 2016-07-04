@@ -98,11 +98,24 @@ class Rocket {
 
     isRocketAtBoundary(){
       var result = false;
-      if ((this.x > this.canvasWidth - this.width) || (this.y > this.canvasHeight - this.height)){
+
+      // At right boundary
+      if (this.x >= (this.canvasWidth - this.width)){
         result = true;
       }
 
-      if ((this.x < 0 || this.y < 0)){
+      // At bottom boundary
+      if (this.y >= (this.canvasHeight - this.height)){
+        result = true;
+      }
+
+      // At left boundary
+      if (this.x < 0 ){
+        result = true;
+      }
+
+      // At top boundary
+      if (this.y < 0 ){
         result = true;
       }
 
