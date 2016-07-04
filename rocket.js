@@ -91,42 +91,29 @@ class Rocket {
       if (this.rotationDegrees > 360){
         this.rotationDegrees = 0;
       }
-      this.isRocketAtBoundary();
-
-      // if (this.x > this.canvasWidth - this.width){
-      //   this.xVector = 0;
-      //   this.yVector = 0;
-      // }
-      // if (this.y > this.canvasHeight - this.height){
-      //   this.xVector = 0;
-      //   this.yVector = 0;
-      // }
-      // if (this.y < 0){
-      //   this.xVector = 0;
-      //   this.yVector = 0;
-      // }
-      // if (this.x < 0){
-      //   this.xVector = 0;
-      //   this.yVector = 0;
-      // }
-
-    }
-    isRocketAtBoundary(){
-      if ((this.x > this.canvasWidth - this.width) || (this.y > this.canvasHeight - this.height)){
-        // console.log('My position in terms of x', this.isRocketAtBoundary());
-        // console.log('My position in terms of y', this.);
+      if (this.isRocketAtBoundary()){
         this.stopRocket();
+      }
+    }
+
+    isRocketAtBoundary(){
+      var result = false;
+      if ((this.x > this.canvasWidth - this.width) || (this.y > this.canvasHeight - this.height)){
+        result = true;
       }
 
       if ((this.x < 0 || this.y < 0)){
-        this.stopRocket();
+        result = true;
       }
+
+      return result;
     }
 
     stopRocket(){
       this.xVector = 0;
       this.yVector = 0;
     }
+
     draw(){
       this.update();
 
