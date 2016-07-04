@@ -40,34 +40,28 @@ class Rocket {
       var xVector = this.xVector;
       var yVector = this.yVector;
 
-      console.log('this is where I describe the log: keydown event.which', event.which);
 
       // var rotationDegrees = this.rotationDegrees;
 
       switch(event.which){
         case 37:
-        console.log('left');
         this.rotationDegrees = rotationDegrees - rotationRate;
         break;
         case 38:
-        console.log('up');
         this.xVector = movementRate * Math.cos(rotationDegrees * Math.PI / 180);
         this.yVector = movementRate * Math.sin(rotationDegrees * Math.PI / 180);
         break;
         case 38:
-        console.log('up again');
         this.xVector = 2 * Math.cos(rotationDegrees * Math.PI / 180);
         this.yVector = 2 * Math.sin(rotationDegrees * Math.PI / 180);
         case 39:
-        console.log('right');
         this.rotationDegrees = rotationDegrees + rotationRate;
         break;
         case 40:
-        console.log('down');
         this.xVector = 0;
         this.yVector = 0;
         case 87:
-        this.color = 'blue';3
+        this.color = 'blue';
         break;
         case 65:
         this.color = 'green';
@@ -94,26 +88,44 @@ class Rocket {
 
       this.x = this.x + this.xVector;
       this.y = this.y + this.yVector;
-      console.log('update(), this.rotationDegrees', this.rotationDegrees);
       if (this.rotationDegrees > 360){
         this.rotationDegrees = 0;
       }
-      if (this.x > this.canvasWidth - this.width){
-        this.xVector = 0;
-        this.yVector = 0;
+      this.isRocketAtBoundary();
+
+      // if (this.x > this.canvasWidth - this.width){
+      //   this.xVector = 0;
+      //   this.yVector = 0;
+      // }
+      // if (this.y > this.canvasHeight - this.height){
+      //   this.xVector = 0;
+      //   this.yVector = 0;
+      // }
+      // if (this.y < 0){
+      //   this.xVector = 0;
+      //   this.yVector = 0;
+      // }
+      // if (this.x < 0){
+      //   this.xVector = 0;
+      //   this.yVector = 0;
+      // }
+
+    }
+    isRocketAtBoundary(){
+      if ((this.x > this.canvasWidth - this.width) || (this.y > this.canvasHeight - this.height)){
+        // console.log('My position in terms of x', this.isRocketAtBoundary());
+        // console.log('My position in terms of y', this.);
+        this.stopRocket();
       }
-      if (this.y > this.canvasHeight - this.height){
-        this.xVector = 0;
-        this.yVector = 0;
+
+      if ((this.x < 0 || this.y < 0)){
+        this.stopRocket();
       }
-      if (this.y < 0){
-        this.xVector = 0;
-        this.yVector = 0;
-      }
-      if (this.x < 0){
-        this.xVector = 0;
-        this.yVector = 0;
-      }
+    }
+
+    stopRocket(){
+      this.xVector = 0;
+      this.yVector = 0;
     }
     draw(){
       this.update();
@@ -156,6 +168,6 @@ class Rocket {
       // The path is only made visible when we call .stroke()
       context.stroke();
 
-      context.restore();3
+      context.restore();
     }
   }
