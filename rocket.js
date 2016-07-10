@@ -1,63 +1,79 @@
 class Rocket {
   constructor(
     context,
+    canvasWidth,
+    canvasHeight,
     width,
     height,
-    rotationDegrees,
+    orientationDirection,
     rotationRate,
     xVector,
     yVector,
-    movementRate,
     x,
     y,
     color) {
       // "this" refers to the instance of Rocket that I am currently working with
       // Add properties to "this" when each instance of the class should have that property
       this.context = context;
+      this.canvasWidth = canvasWidth;
+      this.canvasHeight = canvasHeight;
       this.width = width;
       this.height = height;
-      this.rotationDegrees = rotationDegrees;
+      this.orientationDirection = orientationDirection;
       this.rotationRate = rotationRate;
       this.xVector = xVector;
       this.yVector = yVector;
-      this.movementRate = movementRate;
+      this.movementRate = 0;
       this.x = x;
       this.y = y;
       this.color = color;
+      this.movementDirection = this.orientationDirection;
 
       window.addEventListener('keydown', event => this.handleKeydown(event));
 
     }
 
     handleKeydown(event){
-      var rotationDegrees = this.rotationDegrees;
+      var orientationDirection = this.orientationDirection;
       var rotationRate = this.rotationRate;
-      var movementRate = this.movementRate;
       var xVector = this.xVector;
       var yVector = this.yVector;
-
-      console.log('this is where I describe the log: keydown event.which', event.which);
-
-      // var rotationDegrees = this.rotationDegrees;
+      // console.log('My movement rate before change', movementRate);
+      // movementRate = movementRate + 1;
+      // console.log('My movement rate after change', movementRate);
+      // unmovementRate = movementRate - 1;
+      // var orientationDirection = this.orientationDirection;
 
       switch(event.which){
         case 37:
-        console.log('left');
-        this.rotationDegrees = rotationDegrees - rotationRate;
+        // left
+        this.orientationDirection = orientationDirection - rotationRate;
         break;
         case 38:
-        console.log('up');
-        this.xVector = movementRate * Math.cos(rotationDegrees * Math.PI / 180);
-        this.yVector = movementRate * Math.sin(rotationDegrees * Math.PI / 180);
+        // up
+        this.movementRate = this.movementRate + 1;
+        this.movementDirection = this.orientationDirection;
         break;
         case 39:
-        console.log('right');
-        this.rotationDegrees = rotationDegrees + rotationRate;
+        // right
+        this.orientationDirection = orientationDirection + rotationRate;
         break;
         case 40:
-        console.log('down');
-        this.xVector = 0;
-        this.yVector = 0;
+        // down
+        this.movementRate = this.movementRate - 1;
+        case 87:
+        this.color = 'blue';
+        break;
+        case 65:
+        this.color = 'green';
+        break;
+        case 83:
+        this.color = 'purple';
+        break;
+        case 68:
+        this.color = 'yellow';
+        break;
+ 
         break;
         case 87:
         this.color = 'blue';
@@ -76,15 +92,65 @@ class Rocket {
     }
 
     update(){
+      // var x = this.x
+      // x = 2;
+      // this.x did not get changed to 2. Only the variable x got updated
+      // To change this.x, I have to say this.x = 2;
+      // Variable x only lets my refer to the value of this.x from the time
+      // I did the variable assignment.
+
+      if (this.movementRate < 0){
+        this.movementRate = 0;
+      }
+      this.xVector = this.movementRate * Math.cos(this.movementDirection * Math.PI / 180);
+      this.yVector = this.movementRate * Math.sin(this.movementDirection * Math.PI / 180);
+
       this.x = this.x + this.xVector;
       this.y = this.y + this.yVector;
-      x = x + xVector;
-      y = y + yVector;
-      if (rotationDegrees > 360){
-        rotationDegrees = 0;
+      if (this.orientationDirection > 360){
+        this.orientationDirection = 0;
+      }
+      if (this.isRocketAtBoundary()){
+        this.stopRocket();
       }
     }
+
+    isRocketAtBoundary(){
+      var result = false;
+
+      // At right boundary
+      if (this.x >= (this.canvasWidth - this.width)){
+        result = true;
+      }
+
+      // At bottom boundary
+      if (this.y >= (this.canvasHeight - this.height)){
+        result = true;
+      }
+
+      // At left boundary
+      if (this.x < 0 ){
+        result = true;
+      }
+
+      // At top boundary
+      if (this.y < 0 ){
+        result = true;
+      }
+
+      return result;
+    }
+<<<<<<< HEAD
     drawfirsttriangle(){
+=======
+
+    stopRocket(){
+      this.xVector = 0;
+      this.yVector = 0;
+    }
+
+    draw(){
+>>>>>>> master
       this.update();
 
       var context = this.context;
@@ -92,7 +158,7 @@ class Rocket {
       var y = this.y;
       var width = this.width;
       var height = this.height;
-      var rotationDegrees = this.rotationDegrees;
+      var orientationDirection = this.orientationDirection;
 
       context.save();
 
@@ -102,7 +168,7 @@ class Rocket {
       context.translate(centerX, centerY); // Translate to center of rectangle
 
       // Convert degrees to radians, because context.rotate needs radians
-      var radians = rotationDegrees * (Math.PI/180);
+      var radians = orientationDirection * (Math.PI/180);
       context.rotate(radians);
 
 
@@ -126,6 +192,7 @@ class Rocket {
       context.stroke();
 
       context.restore();
+<<<<<<< HEAD
 
 
       x = x + xVector;
@@ -191,5 +258,7 @@ class Rocket {
 
 
       }
+=======
+>>>>>>> master
     }
   }
