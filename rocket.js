@@ -5,11 +5,10 @@ class Rocket {
     canvasHeight,
     width,
     height,
-    rotationDegrees,
+    orientationDirection,
     rotationRate,
     xVector,
     yVector,
-    movementRate,
     x,
     y,
     color) {
@@ -20,21 +19,22 @@ class Rocket {
       this.canvasHeight = canvasHeight;
       this.width = width;
       this.height = height;
-      this.rotationDegrees = rotationDegrees;
+      this.orientationDirection = orientationDirection;
       this.rotationRate = rotationRate;
       this.xVector = xVector;
       this.yVector = yVector;
-      this.movementRate = movementRate;
+      this.movementRate = 0;
       this.x = x;
       this.y = y;
       this.color = color;
+      this.movementDirection = this.orientationDirection;
 
       window.addEventListener('keydown', event => this.handleKeydown(event));
 
     }
 
     handleKeydown(event){
-      var rotationDegrees = this.rotationDegrees;
+      var orientationDirection = this.orientationDirection;
       var rotationRate = this.rotationRate;
       var xVector = this.xVector;
       var yVector = this.yVector;
@@ -42,27 +42,25 @@ class Rocket {
       // movementRate = movementRate + 1;
       // console.log('My movement rate after change', movementRate);
       // unmovementRate = movementRate - 1;
-      // var rotationDegrees = this.rotationDegrees;
+      // var orientationDirection = this.orientationDirection;
 
       switch(event.which){
         case 37:
-        this.rotationDegrees = rotationDegrees - rotationRate;
+        // left
+        this.orientationDirection = orientationDirection - rotationRate;
         break;
         case 38:
+        // up
         this.movementRate = this.movementRate + 1;
-        this.xVector = this.movementRate * Math.cos(rotationDegrees * Math.PI / 180);
-        this.yVector = this.movementRate * Math.sin(rotationDegrees * Math.PI / 180);
+        this.movementDirection = this.orientationDirection;
         break;
         case 39:
-        this.rotationDegrees = rotationDegrees + rotationRate;
+        // right
+        this.orientationDirection = orientationDirection + rotationRate;
         break;
         case 40:
+        // down
         this.movementRate = this.movementRate - 1;
-        if (this.movementRate < 0){
-          this.movementRate = 0;
-        }
-        this.xVector = this.movementRate * Math.cos(rotationDegrees * Math.PI / 180);
-        this.yVector = this.movementRate * Math.sin(rotationDegrees * Math.PI / 180);
         case 87:
         this.color = 'blue';
         break;
@@ -89,10 +87,16 @@ class Rocket {
       // Variable x only lets my refer to the value of this.x from the time
       // I did the variable assignment.
 
+      if (this.movementRate < 0){
+        this.movementRate = 0;
+      }
+      this.xVector = this.movementRate * Math.cos(this.movementDirection * Math.PI / 180);
+      this.yVector = this.movementRate * Math.sin(this.movementDirection * Math.PI / 180);
+
       this.x = this.x + this.xVector;
       this.y = this.y + this.yVector;
-      if (this.rotationDegrees > 360){
-        this.rotationDegrees = 0;
+      if (this.orientationDirection > 360){
+        this.orientationDirection = 0;
       }
       if (this.isRocketAtBoundary()){
         this.stopRocket();
@@ -138,7 +142,7 @@ class Rocket {
       var y = this.y;
       var width = this.width;
       var height = this.height;
-      var rotationDegrees = this.rotationDegrees;
+      var orientationDirection = this.orientationDirection;
 
       context.save();
 
@@ -148,7 +152,7 @@ class Rocket {
       context.translate(centerX, centerY); // Translate to center of rectangle
 
       // Convert degrees to radians, because context.rotate needs radians
-      var radians = rotationDegrees * (Math.PI/180);
+      var radians = orientationDirection * (Math.PI/180);
       context.rotate(radians);
 
 
