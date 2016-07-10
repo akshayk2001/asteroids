@@ -34,8 +34,6 @@ class Rocket {
     }
 
     handleKeydown(event){
-      event.preventDefault();
-      event.stopPropagation();
       var rotationDegrees = this.rotationDegrees;
       var rotationRate = this.rotationRate;
       var xVector = this.xVector;
@@ -59,8 +57,12 @@ class Rocket {
         this.rotationDegrees = rotationDegrees + rotationRate;
         break;
         case 40:
-        this.xVector = 0;
-        this.yVector = 0;
+        this.movementRate = this.movementRate - 1;
+        if (this.movementRate < 0){
+          this.movementRate = 0;
+        }
+        this.xVector = this.movementRate * Math.cos(rotationDegrees * Math.PI / 180);
+        this.yVector = this.movementRate * Math.sin(rotationDegrees * Math.PI / 180);
         case 87:
         this.color = 'blue';
         break;
