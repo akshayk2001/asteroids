@@ -39,6 +39,8 @@ class Rocket {
       var movementRate = this.movementRate;
       var xVector = this.xVector;
       var yVector = this.yVector;
+      movementRate = movementRate + 1;
+      unmovementRate = movementRate - 1;
 
 
       // var rotationDegrees = this.rotationDegrees;
@@ -51,15 +53,12 @@ class Rocket {
         this.xVector = movementRate * Math.cos(rotationDegrees * Math.PI / 180);
         this.yVector = movementRate * Math.sin(rotationDegrees * Math.PI / 180);
         break;
-        case 38:
-        this.xVector = 2 * Math.cos(rotationDegrees * Math.PI / 180);
-        this.yVector = 2 * Math.sin(rotationDegrees * Math.PI / 180);
         case 39:
         this.rotationDegrees = rotationDegrees + rotationRate;
         break;
         case 40:
-        this.xVector = 0;
-        this.yVector = 0;
+        this.xVector = unmovementRate * Math.cos(rotationDegrees * Math.PI / 180);
+        this.yVector = unmovementRate * Math.sin(rotationDegrees * Math.PI / 180);
         case 87:
         this.color = 'blue';
         break;
