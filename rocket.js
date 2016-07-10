@@ -34,9 +34,10 @@ class Rocket {
     }
 
     handleKeydown(event){
+      event.preventDefault();
+      event.stopPropagation();
       var rotationDegrees = this.rotationDegrees;
       var rotationRate = this.rotationRate;
-      var unmovementRate = this.unmovementRate;
       var xVector = this.xVector;
       var yVector = this.yVector;
       // console.log('My movement rate before change', movementRate);
