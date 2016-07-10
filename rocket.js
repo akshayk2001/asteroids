@@ -36,13 +36,13 @@ class Rocket {
     handleKeydown(event){
       var rotationDegrees = this.rotationDegrees;
       var rotationRate = this.rotationRate;
-      var movementRate = this.movementRate;
+      var unmovementRate = this.unmovementRate;
       var xVector = this.xVector;
       var yVector = this.yVector;
-      movementRate = movementRate + 1;
-      unmovementRate = movementRate - 1;
-
-
+      // console.log('My movement rate before change', movementRate);
+      // movementRate = movementRate + 1;
+      // console.log('My movement rate after change', movementRate);
+      // unmovementRate = movementRate - 1;
       // var rotationDegrees = this.rotationDegrees;
 
       switch(event.which){
@@ -50,15 +50,16 @@ class Rocket {
         this.rotationDegrees = rotationDegrees - rotationRate;
         break;
         case 38:
-        this.xVector = movementRate * Math.cos(rotationDegrees * Math.PI / 180);
-        this.yVector = movementRate * Math.sin(rotationDegrees * Math.PI / 180);
+        this.movementRate = this.movementRate + 1;
+        this.xVector = this.movementRate * Math.cos(rotationDegrees * Math.PI / 180);
+        this.yVector = this.movementRate * Math.sin(rotationDegrees * Math.PI / 180);
         break;
         case 39:
         this.rotationDegrees = rotationDegrees + rotationRate;
         break;
         case 40:
-        this.xVector = unmovementRate * Math.cos(rotationDegrees * Math.PI / 180);
-        this.yVector = unmovementRate * Math.sin(rotationDegrees * Math.PI / 180);
+        this.xVector = 0;
+        this.yVector = 0;
         case 87:
         this.color = 'blue';
         break;
