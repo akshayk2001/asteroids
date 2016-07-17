@@ -52,18 +52,8 @@ function draw(){
 	context.fillStyle = "rgb(0, 0, 0)";
 	context.fillRect(0, 0, width, height);
 
-
-<<<<<<< HEAD
-	myRocket.drawfirsttriangle();
-	myRocket.drawsecondtriangle();
-=======
 	myRocket.draw();
 	// secondRocket.draw();
->>>>>>> master
-
-
-
-
 
 	window.requestAnimationFrame(draw);
 }
